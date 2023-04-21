@@ -7,7 +7,6 @@ import secrets
 import codecs
 import base64
 
-
 global DICTIONARY_PATH
 DICTIONARY_PATH = "morse_dictionary.json"
 
@@ -24,41 +23,31 @@ def initialize_dictionary(path):
         key = val_list[i]
         val = key_list[i]
         REVJMORSE[key] = val
+    print(REVJMORSE)
 
 def encode(plain):
     cypher = ""
     for i in range(len(str(plain))):
         if(plain[i] == " "):
-            cypher += " "
+            cypher += " / "
         elif plain[i] in JMORSE.keys():
             cypher += JMORSE[plain[i]]
+            cypher += " "
         else:
-            pass
+            cypher += "#"
     return cypher
             
 def decode(cypher): #you should read in the first 5 chars of the input and check if not then drop the last one and so on
     plain = ""
-    for i in range(len(str(cypher))):
-        temp = ""
-        if cypher[i] in JMORSE.values():
-            plain += REVJMORSE[cypher[i]]
-        elif " ":
-            plain += " "
-        else:
-            temp = cypher[i]
-            while(len(temp) > 0):
-                if cypher[i] in JMORSE.values():
-                    plain += REVJMORSE[temp]
-                    i += len(temp)
-                    break
-                elif(len(temp) or cypher[i] == " "):
-                    plain += " "
-                    i += len(temp)
-                    break
-                else:
-                    temp += cypher[i+len(temp)]
+    cypherLength = len(cypher)
+    cypherWords = cypher.split(" / ")
+    for word in cypherWords:
+        cypherLetters = word.split(" ")
+        for letter in cypherLetters:
+            if letter in REVJMORSE.keys():
+                plain += REVJMORSE[letter]
+        plain += " "
     return plain
-    
 
 def main():
     initialize_dictionary(DICTIONARY_PATH)
