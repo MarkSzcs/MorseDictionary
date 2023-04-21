@@ -39,7 +39,6 @@ def encode(plain):
             
 def decode(cypher): #you should read in the first 5 chars of the input and check if not then drop the last one and so on
     plain = ""
-    cypherLength = len(cypher)
     cypherWords = cypher.split(" / ")
     for word in cypherWords:
         cypherLetters = word.split(" ")
