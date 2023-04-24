@@ -59,3 +59,5 @@ def main():
 if __name__ == "__main__":
     main()
     
+# we need an isMorse function to check if the input is morse or not
+# we need an isPlain function to check if the input is plain or not
