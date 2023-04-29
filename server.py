@@ -6,8 +6,8 @@ import struct;
 
 import morse_dictionary as md;
 
-srv = socket(AF_INET, SOCK_STREAM)
-srv.setsockopt(SOL_SOCKET, SO_REUSEADDR, 1)
+srv = socket(socket.AF_INET, socket.SOCK_STREAM)
+srv.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 srv.bind(("0.0.0.0", 5555))
 srv.listen()
 
